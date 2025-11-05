@@ -8,21 +8,24 @@
 </head>
 <body>
   <header>
-    <img src="cover.jpg" alt="封面图像" class="cover">
-    <nav>
-      <a href="about.html">关于</a>
-      <a href="post.html">文章</a>
-      <a href="comments.html">评论</a>
-    </nav>
-  </header>
-  <main>
     <h1>欢迎来到 Aistrip 的首页</h1>
     <p>这是一个展示 Aistrip 项目的主页，包含关于项目的介绍、文章和用户评论。</p>
-    <p>请使用上方导航栏浏览不同的页面。</p>
-    <button id="goBtn">进入 Aistrip 平台</button>
+  </header>
+
+  <main>
+    <a href="about.html" class="button">关于我们</a>
+    <a href="comments.html" class="button">用户评论</a>
+    <a href="posts.html" class="button">博客文章</a>
+
+    <!-- ✅ 跳转按钮，必须有这个 -->
+    <button id="goBtn" style="display:none;">跳转</button>
   </main>
 
-  <!-- 引入跳转脚本 -->
+  <footer>
+    <p>版权所有 &copy; 2025 Aistrip</p>
+  </footer>
+
+  <!-- ✅ 引入跳转脚本 -->
   <script src="redirect.js"></script>
 </body>
 </html>
