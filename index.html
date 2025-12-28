@@ -2,44 +2,70 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>直接扫码添加微信好友</title>
+  <title>添加我为微信好友</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f2f2f2;
       text-align: center;
-      padding-top: 50px;
-      background: #f5f5f5;
+      padding-top: 60px;
     }
     h2 {
       color: #333;
-    }
-    #qrcode {
-      margin-top: 30px;
+      font-size: 22px;
     }
     p {
-      margin-top: 20px;
       color: #666;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #qrcode {
+      position: relative;
+      display: inline-block;
+      margin-top: 30px;
+    }
+    #qrcode canvas {
+      border-radius: 12px;
+    }
+    #logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 40px;
+      height: 40px;
+      transform: translate(-50%, -50%);
+      border-radius: 8px;
+    }
+    .tip {
+      margin-top: 20px;
+      font-size: 15px;
+      color: #888;
     }
   </style>
 </head>
 <body>
-  <h2>扫码即可直接添加我为微信好友</h2>
-  <p>手机号：16899991111</p>
-  <div id="qrcode"></div>
+  <h2>扫码添加我为微信好友</h2>
+  <p>手机号：15774538881</p>
 
-  <!-- 引入二维码生成库 -->
+  <div id="qrcode">
+    <div id="qr-container"></div>
+    <img id="logo" src="https://res.wx.qq.com/op_res/2c6e4e7e7b6f5b8b5a8e5c2e7c5e4e7e/logo.png" alt="WeChat Logo">
+  </div>
+
+  <div class="tip">📌 扫码后请点击“添加好友”按钮完成操作</div>
+
+  <!-- 引入二维码库 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    window.onload = function() {
-      new QRCode(document.getElementById("qrcode"), {
-        text: "weixin://dl/add?phone=15774538881", // 直接生成微信添加好友的Scheme
-        width: 220,
-        height: 220,
-        colorDark : "#000000",
-        colorLight : "#ffffff",
-        correctLevel : QRCode.CorrectLevel.H
-      });
-    };
+    // 生成二维码
+    new QRCode(document.getElementById("qr-container"), {
+      text: "weixin://dl/add?phone=15774538881",
+      width: 220,
+      height: 220,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
   </script>
 </body>
 </html>
