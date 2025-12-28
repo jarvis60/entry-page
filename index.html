@@ -20,14 +20,14 @@
     }
     h2 {
       color: #333;
-      font-size: 28px;
-      margin-bottom: 10px;
+      font-size: 30px;
+      margin-bottom: 15px;
     }
     p {
       color: #555;
-      font-size: 20px;
+      font-size: 22px;
       margin-top: 5px;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
     #qrcode {
       position: relative;
@@ -38,8 +38,8 @@
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       transform: translate(-50%, -50%);
       border-radius: 12px;
       background: #fff;
@@ -47,8 +47,8 @@
       box-shadow: 0 0 6px rgba(0,0,0,0.2);
     }
     .tip {
-      margin-top: 25px;
-      font-size: 18px;
+      margin-top: 30px;
+      font-size: 20px;
       color: #666;
     }
   </style>
@@ -60,8 +60,8 @@
 
     <div id="qrcode">
       <div id="qr-container"></div>
-      <!-- 使用稳定的微信 Logo PNG -->
-      <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/WeChat_Logo.png" alt="WeChat Logo">
+      <!-- 本地目录下的微信图标 -->
+      <img id="logo" src="wechat.png" alt="WeChat Logo">
     </div>
 
     <div class="tip">📌 扫码后会打开微信，请点击“添加好友”完成操作</div>
@@ -73,8 +73,8 @@
     // 生成更大的二维码
     new QRCode(document.getElementById("qr-container"), {
       text: "weixin://dl/add?phone=15774538881",
-      width: 280,
-      height: 280,
+      width: 300,
+      height: 300,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
