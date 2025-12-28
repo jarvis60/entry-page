@@ -51,12 +51,42 @@
       font-size: 20px;
       color: #666;
     }
+    button {
+      margin-top: 25px;
+      background-color: #07c160; /* 微信绿 */
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    button:hover {
+      background-color: #06a150;
+    }
+    .copy-btn {
+      margin-left: 15px;
+      background-color: #07c160;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background-color: #06a150;
+    }
   </style>
 </head>
 <body>
   <div class="card">
-    <h2>扫码添加我为微信好友</h2>
-    <p>手机号：<strong>15774538881</strong></p>
+    <h2>扫码或点击按钮添加我为微信好友</h2>
+    <p>
+      手机号：<strong id="phone">16899991111</strong>
+      <button class="copy-btn" onclick="copyPhone()">复制</button>
+    </p>
 
     <div id="qrcode">
       <div id="qr-container"></div>
@@ -65,12 +95,14 @@
     </div>
 
     <div class="tip">📌 扫码后会打开微信，请点击“添加好友”完成操作</div>
+
+    <button onclick="addWeChat()">👉 点击这里添加好友</button>
   </div>
 
   <!-- 引入二维码库 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    // 生成更大的二维码
+    // 生成二维码
     new QRCode(document.getElementById("qr-container"), {
       text: "weixin://dl/add?phone=15774538881",
       width: 300,
@@ -79,6 +111,24 @@
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
     });
+
+    // 按钮点击事件
+    function addWeChat() {
+      window.location.href = "weixin://dl/add?phone=15774538881";
+      setTimeout(() => {
+        alert("如果没有自动跳转，请复制手机号 15774538881 到微信搜索添加好友。");
+      }, 2000);
+    }
+
+    // 复制手机号
+    function copyPhone() {
+      const phone = document.getElementById("phone").innerText;
+      navigator.clipboard.writeText(phone).then(() => {
+        alert("手机号已复制：" + phone);
+      }).catch(err => {
+        alert("复制失败，请手动复制。");
+      });
+    }
   </script>
 </body>
 </html>
