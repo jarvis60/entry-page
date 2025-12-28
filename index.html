@@ -6,62 +6,75 @@
   <style>
     body {
       font-family: "Helvetica Neue", Arial, sans-serif;
-      background-color: #f2f2f2;
+      background: linear-gradient(135deg, #e0f7fa, #ffffff);
       text-align: center;
-      padding-top: 60px;
+      padding-top: 80px;
+      margin: 0;
+    }
+    .card {
+      background: #fff;
+      display: inline-block;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
     h2 {
       color: #333;
-      font-size: 22px;
+      font-size: 28px;
+      margin-bottom: 10px;
     }
     p {
-      color: #666;
-      font-size: 16px;
-      margin-top: 10px;
+      color: #555;
+      font-size: 20px;
+      margin-top: 5px;
+      margin-bottom: 20px;
     }
     #qrcode {
       position: relative;
       display: inline-block;
-      margin-top: 30px;
-    }
-    #qrcode canvas {
-      border-radius: 12px;
+      margin-top: 20px;
     }
     #logo {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 40px;
-      height: 40px;
+      width: 60px;
+      height: 60px;
       transform: translate(-50%, -50%);
-      border-radius: 8px;
+      border-radius: 12px;
+      background: #fff;
+      padding: 6px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
     }
     .tip {
-      margin-top: 20px;
-      font-size: 15px;
-      color: #888;
+      margin-top: 25px;
+      font-size: 18px;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <h2>扫码添加我为微信好友</h2>
-  <p>手机号：15774538881</p>
+  <div class="card">
+    <h2>扫码添加我为微信好友</h2>
+    <p>手机号：<strong>16899991111</strong></p>
 
-  <div id="qrcode">
-    <div id="qr-container"></div>
-    <img id="logo" src="https://res.wx.qq.com/op_res/2c6e4e7e7b6f5b8b5a8e5c2e7c5e4e7e/logo.png" alt="WeChat Logo">
+    <div id="qrcode">
+      <div id="qr-container"></div>
+      <!-- 使用稳定的微信 Logo PNG -->
+      <img id="logo" src="https://upload.wikimedia.org/wikipedia/commons/7/7e/WeChat_Logo.png" alt="WeChat Logo">
+    </div>
+
+    <div class="tip">📌 扫码后会打开微信，请点击“添加好友”完成操作</div>
   </div>
-
-  <div class="tip">📌 扫码后请点击“添加好友”按钮完成操作</div>
 
   <!-- 引入二维码库 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    // 生成二维码
+    // 生成更大的二维码
     new QRCode(document.getElementById("qr-container"), {
-      text: "weixin://dl/add?phone=15774538881",
-      width: 220,
-      height: 220,
+      text: "weixin://dl/add?phone=16899991111",
+      width: 280,
+      height: 280,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
