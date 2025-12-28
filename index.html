@@ -3,76 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <title>添加我为微信好友</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- 适配手机屏幕 -->
   <style>
     body {
       font-family: "Helvetica Neue", Arial, sans-serif;
       background: linear-gradient(135deg, #e0f7fa, #ffffff);
       text-align: center;
-      padding-top: 80px;
+      padding: 8vw 0;
       margin: 0;
     }
     .card {
       background: #fff;
       display: inline-block;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      padding: 6vw;
+      border-radius: 4vw;
+      box-shadow: 0 1vw 3vw rgba(0,0,0,0.15);
+      max-width: 90vw;
     }
     h2 {
       color: #333;
-      font-size: 30px;
-      margin-bottom: 15px;
+      font-size: 6vw;
+      margin-bottom: 3vw;
     }
     p {
       color: #555;
-      font-size: 22px;
-      margin-top: 5px;
-      margin-bottom: 25px;
+      font-size: 5vw;
+      margin-top: 2vw;
+      margin-bottom: 5vw;
     }
     #qrcode {
       position: relative;
       display: inline-block;
-      margin-top: 20px;
+      margin-top: 3vw;
     }
     #logo {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 70px;
-      height: 70px;
+      width: 15vw;
+      height: 15vw;
       transform: translate(-50%, -50%);
-      border-radius: 12px;
+      border-radius: 3vw;
       background: #fff;
-      padding: 6px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+      padding: 1vw;
+      box-shadow: 0 0 2vw rgba(0,0,0,0.2);
     }
     .tip {
-      margin-top: 30px;
-      font-size: 20px;
+      margin-top: 5vw;
+      font-size: 4.5vw;
       color: #666;
     }
     button {
-      margin-top: 25px;
+      margin-top: 5vw;
       background-color: #07c160; /* 微信绿 */
       color: white;
       border: none;
-      padding: 15px 30px;
-      font-size: 20px;
-      border-radius: 10px;
+      padding: 3vw 6vw;
+      font-size: 5vw;
+      border-radius: 2vw;
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      box-shadow: 0 1vw 2vw rgba(0,0,0,0.2);
     }
     button:hover {
       background-color: #06a150;
     }
     .copy-btn {
-      margin-left: 15px;
+      margin-left: 3vw;
       background-color: #07c160;
       color: white;
       border: none;
-      padding: 6px 12px;
-      font-size: 16px;
-      border-radius: 6px;
+      padding: 1.5vw 3vw;
+      font-size: 4.5vw;
+      border-radius: 2vw;
       cursor: pointer;
     }
     .copy-btn:hover {
@@ -102,11 +104,12 @@
   <!-- 引入二维码库 -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    // 生成二维码
+    // 动态二维码大小：屏幕宽度的70%，最大400px
+    const qrSize = Math.min(window.innerWidth * 0.7, 400);
     new QRCode(document.getElementById("qr-container"), {
       text: "weixin://dl/add?phone=15774538881",
-      width: 300,
-      height: 300,
+      width: qrSize,
+      height: qrSize,
       colorDark: "#000000",
       colorLight: "#ffffff",
       correctLevel: QRCode.CorrectLevel.H
